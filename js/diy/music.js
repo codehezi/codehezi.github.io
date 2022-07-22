@@ -6,7 +6,7 @@ const ap = new APlayer ({
   {
    name:"浴室",
    artist:"deca jions",
-   url:"https://m704.music.126.net/20211212133437/6298f876daf4b3a20b984659f71f8968/jdyyaac/000c/560b/5153/7f43625368aa52c4fbb0f968fa2007d2.m4a?authSecret=0000017dad0be60506550aa4681408a0",
+   url:"https://m801.music.126.net/20220722194213/2cea2614a3d0177d40137c2acf6e0cb1/jdyyaac/000c/560b/5153/7f43625368aa52c4fbb0f968fa2007d2.m4a",
    cover:"https://p1.music.126.net/byjfkEIOWI_RmxSKEWTPyw==/18910500486297525.jpg?param=200y200",
   },
 ]
