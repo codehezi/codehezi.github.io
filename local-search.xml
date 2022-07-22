@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>windows安装hexo静态博客</title>
+    <link href="/2022/07/22/hexo/"/>
+    <url>/2022/07/22/hexo/</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="windows搭建静态博客"><a href="#windows搭建静态博客" class="headerlink" title="windows搭建静态博客"></a>windows搭建静态博客</h3><blockquote><p>安装环境</p><ul><li>(1)安装了node的环境，并且版本在14.0.1或者以上</li><li>(2)安装了Git环境</li><li>(3)搭建hexo静态博客</li><li>(4)注册了GitHub账号，便于后面代码托管</li></ul></blockquote><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs avrasm"><span class="hljs-meta">#安装hexo的命令行</span><br>npm install -g hexo-<span class="hljs-keyword">cli</span><br><br></code></pre></td></tr></table></figure><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs clean">##检查hexo是否安装完成<br>hexo -v<br></code></pre></td></tr></table></figure><p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.50g2wdtujgo0.webp"></p><blockquote><p>出现这样的输出说明hexo安装完成了</p></blockquote><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-meta">#在任意一磁盘下加一个文件夹，如：blogtest，在此文件夹下初始化</span><br>hexo <span class="hljs-keyword">init</span><br></code></pre></td></tr></table></figure><p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.7jgrkbc5xcs0.webp"></p><blockquote><p>出现此图说明已经初始化完成</p></blockquote><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cmake"><span class="hljs-comment">#下载hexo需要的一些依赖</span><br>npm <span class="hljs-keyword">install</span><br></code></pre></td></tr></table></figure><p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.7i5b0lwmsog0.webp"></p><blockquote><p>出现这个文件夹说明依赖已经下载完</p></blockquote><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-comment">#先清理一下</span><br><span class="hljs-attribute">hexo</span> clean<br> <br><span class="hljs-comment">#生成静态文件</span><br>hexo g<br><br><span class="hljs-comment">#启动hexo服务</span><br>hexo s<br><br><span class="hljs-comment">#发布到GitHub</span><br>hexo d<br></code></pre></td></tr></table></figure><p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.45b9j5qn4n80.webp"></p><blockquote><p>出现这个图说明hexo的静态博客已经搭建成功</p></blockquote>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>linux安装git</title>
     <link href="/2022/07/20/git/"/>
     <url>/2022/07/20/git/</url>
