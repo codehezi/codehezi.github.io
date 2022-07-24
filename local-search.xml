@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>liunx磁盘扩容</title>
+    <link href="/2022/07/24/liunx-kuorong/"/>
+    <url>/2022/07/24/liunx-kuorong/</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote><p>今天在用 liunx 下载插件的时候突然报磁盘空间不足，之后不管是切换目录，关机重启什么的，都没办法使用，之后使用”rm -f xxx”到指定的文件下删除一些日志后，释放了一些空间才可以正常使用，但是这个并不能管多久，稍微使用一下日志记多了空间就又开始不足了，后来就去网上查了下，原来是一开始没做分区，分配的 60 多个 G 并没有给根目录。下面就来做来分区给根目录扩个容。</p></blockquote><ul><li>首先查看下磁盘的情况</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#查看当前磁盘的使用情况</span><br><span class="hljs-built_in">df</span> -h<br></code></pre></td></tr></table></figure><p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.5zl59b2z23g0.webp"></p><ul><li>看下分区情况</li></ul><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">fdisk -l</span><br></code></pre></td></tr></table></figure><p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.6phzsa8p0480.webp"></p><blockquote><p>从图中明显可以看出这个默认分配的空间只有十几个 G，而我在虚拟机中设置的是 90G,显然我还有很多空间是没有用到的</p></blockquote><ul><li>首先对磁盘进行分区</li></ul><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">fdisk <span class="hljs-regexp">/dev/</span>sda<br></code></pre></td></tr></table></figure><p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.5y3s11gfr7w0.webp"></p><ul><li>分完区查看一下分区的情况</li></ul><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">fdisk -l</span><br></code></pre></td></tr></table></figure><p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.38l1lop40mw0.webp"></p><blockquote><p>发现这里多出一个 sda3 的区</p></blockquote><ul><li>创建物理卷</li></ul><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">pvcreate <span class="hljs-regexp">/dev/</span>sda3<br></code></pre></td></tr></table></figure><blockquote><p>这个地方可能会报错，报 Device not found:/dev/sda3 ,这个时候可以将 liunx 重启一下，一般不会报错。</p></blockquote><p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.39pwnkdmdbs0.webp"></p><blockquote><p>创建成功了就会如上图显示成功，同时查看了物理卷的信息，出现了新增的 sda3</p></blockquote><ul><li>查看当前物理卷的使用情况</li></ul><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">vgdisplay</span><br></code></pre></td></tr></table></figure><p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.2h594oxdzyq0.webp"></p><ul><li>把创建的这个物理卷加进来</li></ul><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-comment">#加上新加的卷</span><br>vgextend <span class="hljs-regexp">/dev/</span>centos<span class="hljs-regexp">/ /</span>dev/sda3<br><br><span class="hljs-comment">#展示当前卷的情况</span><br>vgdisplay<br></code></pre></td></tr></table></figure><p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.26vmb708mjvo.webp"></p><ul><li>查看一下新加卷</li></ul><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">pvdisplay</span><br></code></pre></td></tr></table></figure><p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.18r6ky8ggujk.webp"></p><ul><li>给更目录 root 分配空间</li></ul><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs awk">lvextent -L+<span class="hljs-number">1</span>G <span class="hljs-regexp">/dev/</span>centos<span class="hljs-regexp">/root /</span>dev/sda3<br><br> resize2fs -p <span class="hljs-regexp">/dev/m</span>apper/centos-root <span class="hljs-number">10</span>G<br></code></pre></td></tr></table></figure><p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.59yfu3e5ei80.webp"></p><blockquote><p>如果报了图片中的错误可以使用下面的命令</p></blockquote><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#查看磁盘情况</span><br><span class="hljs-built_in">df</span> -h<br><br>xfs_growfs /dev/mapper/centos-root<br><br><span class="hljs-comment">#再次查看磁盘</span><br><span class="hljs-built_in">df</span> -h<br></code></pre></td></tr></table></figure><p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.5zoe8ezoqnk0.webp"></p><blockquote><p>下面磁盘空间变化了，说明扩容好了</p></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>liunx</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>liunx</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>springboot项目改造成dubbo微服务项目</title>
     <link href="/2022/07/22/dubbo/"/>
     <url>/2022/07/22/dubbo/</url>
