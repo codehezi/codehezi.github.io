@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>tabby</title>
+    <link href="/2022/07/27/tabby/"/>
+    <url>/2022/07/27/tabby/</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="性能强大且优雅的远程连接工具-tabby"><a href="#性能强大且优雅的远程连接工具-tabby" class="headerlink" title="性能强大且优雅的远程连接工具 tabby"></a><a href="https://github.com/Eugeny/tabby/releases/tag/v1.0.164">性能强大且优雅的远程连接工具 tabby</a></h1><blockquote><p>点击名称可跳转 GitHub 下载各个版本的安装包</p></blockquote><p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.243361vn98kg.webp"></p><ul><li><p>windows 版的安装程序，下载双击直接下一步安装即可</p></li><li><p>安装完成</p><ul><li><p>设置步骤</p><ul><li><p>(1)<br><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.5mftv62bmq40.webp"></p></li><li><p>(2)<br><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.6ml87xubf4w0.webp"></p></li><li><p>(3)<br><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.387c79fg348.webp"></p></li><li><p>(4)<br><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.5ya6fngeyd40.webp"></p></li><li><p>(5)<br><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.5ya6fngeyd40.webp"></p></li><li><p>(7)<br><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.7987qiwxqhw0.webp"></p></li><li><p>(6)<br><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.6mrx9dj2nhk0.webp"></p></li><li><p>(7)<br><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.6mrx9dj2nhk0.webp"></p></li><li><p>(8)<br><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.68w7vxdwz9o0.webp"></p></li><li><p>(9)<br><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.5walfnk96ok0.webp"></p></li></ul><blockquote><p>至此，安装和配置远程服务器完毕</p></blockquote></li></ul></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>node</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>tabby</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>liunx磁盘扩容</title>
     <link href="/2022/07/24/liunx-kuorong/"/>
     <url>/2022/07/24/liunx-kuorong/</url>

@@ -16,33 +16,34 @@
   <meta name="author" content="codehezi">
   <meta name="keywords" content="">
   
-    <meta name="description" content="今天在用 liunx 下载插件的时候突然报磁盘空间不足，之后不管是切换目录，关机重启什么的，都没办法使用，之后使用”rm -f xxx”到指定的文件下删除一些日志后，释放了一些空间才可以正常使用，但是这个并不能管多久，稍微使用一下日志记多了空间就又开始不足了，后来就去网上查了下，原来是一开始没做分区，分配的 60 多个 G 并没有给根目录。下面就来做来分区给根目录扩个容。   首先查看下磁盘的情">
+    <meta name="description" content="性能强大且优雅的远程连接工具 tabby 点击名称可跳转 GitHub 下载各个版本的安装包    windows 版的安装程序，下载双击直接下一步安装即可  安装完成  设置步骤  (1)  (2)  (3)  (4)  (5)  (7)  (6)  (7)  (8)  (9)    至此，安装和配置远程服务器完毕">
 <meta property="og:type" content="article">
-<meta property="og:title" content="liunx磁盘扩容">
-<meta property="og:url" content="http://example.com/2022/07/24/liunx-kuorong/index.html">
+<meta property="og:title" content="tabby">
+<meta property="og:url" content="http://example.com/2022/07/27/tabby/index.html">
 <meta property="og:site_name" content="个人博客">
-<meta property="og:description" content="今天在用 liunx 下载插件的时候突然报磁盘空间不足，之后不管是切换目录，关机重启什么的，都没办法使用，之后使用”rm -f xxx”到指定的文件下删除一些日志后，释放了一些空间才可以正常使用，但是这个并不能管多久，稍微使用一下日志记多了空间就又开始不足了，后来就去网上查了下，原来是一开始没做分区，分配的 60 多个 G 并没有给根目录。下面就来做来分区给根目录扩个容。   首先查看下磁盘的情">
+<meta property="og:description" content="性能强大且优雅的远程连接工具 tabby 点击名称可跳转 GitHub 下载各个版本的安装包    windows 版的安装程序，下载双击直接下一步安装即可  安装完成  设置步骤  (1)  (2)  (3)  (4)  (5)  (7)  (6)  (7)  (8)  (9)    至此，安装和配置远程服务器完毕">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.5zl59b2z23g0.webp">
-<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.6phzsa8p0480.webp">
-<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.5y3s11gfr7w0.webp">
-<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.38l1lop40mw0.webp">
-<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.39pwnkdmdbs0.webp">
-<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.2h594oxdzyq0.webp">
-<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.26vmb708mjvo.webp">
-<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.18r6ky8ggujk.webp">
-<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.59yfu3e5ei80.webp">
-<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.5zoe8ezoqnk0.webp">
-<meta property="article:published_time" content="2022-07-24T10:30:23.000Z">
-<meta property="article:modified_time" content="2022-07-24T10:33:39.000Z">
+<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.243361vn98kg.webp">
+<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.5mftv62bmq40.webp">
+<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.6ml87xubf4w0.webp">
+<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.387c79fg348.webp">
+<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.5ya6fngeyd40.webp">
+<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.5ya6fngeyd40.webp">
+<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.7987qiwxqhw0.webp">
+<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.6mrx9dj2nhk0.webp">
+<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.6mrx9dj2nhk0.webp">
+<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.68w7vxdwz9o0.webp">
+<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.5walfnk96ok0.webp">
+<meta property="article:published_time" content="2022-07-27T11:33:45.000Z">
+<meta property="article:modified_time" content="2022-07-27T11:35:16.975Z">
 <meta property="article:author" content="codehezi">
-<meta property="article:tag" content="liunx">
+<meta property="article:tag" content="tabby">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.5zl59b2z23g0.webp">
+<meta name="twitter:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.243361vn98kg.webp">
   
   
   
-  <title>liunx磁盘扩容 - 个人博客</title>
+  <title>tabby - 个人博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -207,7 +208,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="liunx磁盘扩容"></span>
+            <span id="subtitle" data-typed-text="tabby"></span>
           
         </div>
 
@@ -218,8 +219,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-07-24 18:30" pubdate>
-          2022年7月24日 晚上
+        <time datetime="2022-07-27 19:33" pubdate>
+          2022年7月27日 晚上
         </time>
       </span>
     
@@ -230,7 +231,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          750 字
+          122 字
         
       </span>
     
@@ -241,7 +242,7 @@
         
         
         
-          7 分钟
+          2 分钟
         
       </span>
     
@@ -279,89 +280,50 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">liunx磁盘扩容</h1>
+            <h1 style="display: none">tabby</h1>
             
             
               <div class="markdown-body">
                 
-                <blockquote>
-<p>今天在用 liunx 下载插件的时候突然报磁盘空间不足，之后不管是切换目录，关机重启什么的，都没办法使用，之后使用”rm -f xxx”到指定的文件下删除一些日志后，释放了一些空间才可以正常使用，但是这个并不能管多久，稍微使用一下日志记多了空间就又开始不足了，后来就去网上查了下，原来是一开始没做分区，分配的 60 多个 G 并没有给根目录。下面就来做来分区给根目录扩个容。</p>
+                <h1 id="性能强大且优雅的远程连接工具-tabby"><a href="#性能强大且优雅的远程连接工具-tabby" class="headerlink" title="性能强大且优雅的远程连接工具 tabby"></a><a target="_blank" rel="noopener" href="https://github.com/Eugeny/tabby/releases/tag/v1.0.164">性能强大且优雅的远程连接工具 tabby</a></h1><blockquote>
+<p>点击名称可跳转 GitHub 下载各个版本的安装包</p>
 </blockquote>
+<p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.243361vn98kg.webp" srcset="/img/loading.gif" lazyload></p>
 <ul>
-<li>首先查看下磁盘的情况</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#查看当前磁盘的使用情况</span><br><span class="hljs-built_in">df</span> -h<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.5zl59b2z23g0.webp" srcset="/img/loading.gif" lazyload></p>
+<li><p>windows 版的安装程序，下载双击直接下一步安装即可</p>
+</li>
+<li><p>安装完成</p>
 <ul>
-<li>看下分区情况</li>
+<li><p>设置步骤</p>
+<ul>
+<li><p>(1)<br><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.5mftv62bmq40.webp" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>(2)<br><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.6ml87xubf4w0.webp" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>(3)<br><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.387c79fg348.webp" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>(4)<br><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.5ya6fngeyd40.webp" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>(5)<br><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.5ya6fngeyd40.webp" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>(7)<br><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.7987qiwxqhw0.webp" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>(6)<br><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.6mrx9dj2nhk0.webp" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>(7)<br><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.6mrx9dj2nhk0.webp" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>(8)<br><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.68w7vxdwz9o0.webp" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>(9)<br><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.5walfnk96ok0.webp" srcset="/img/loading.gif" lazyload></p>
+</li>
 </ul>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">fdisk -l</span><br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.6phzsa8p0480.webp" srcset="/img/loading.gif" lazyload></p>
 <blockquote>
-<p>从图中明显可以看出这个默认分配的空间只有十几个 G，而我在虚拟机中设置的是 90G,显然我还有很多空间是没有用到的</p>
+<p>至此，安装和配置远程服务器完毕</p>
 </blockquote>
-<ul>
-<li>首先对磁盘进行分区</li>
+</li>
 </ul>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">fdisk <span class="hljs-regexp">/dev/</span>sda<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.5y3s11gfr7w0.webp" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>分完区查看一下分区的情况</li>
+</li>
 </ul>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">fdisk -l</span><br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.38l1lop40mw0.webp" srcset="/img/loading.gif" lazyload></p>
-<blockquote>
-<p>发现这里多出一个 sda3 的区</p>
-</blockquote>
-<ul>
-<li>创建物理卷</li>
-</ul>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">pvcreate <span class="hljs-regexp">/dev/</span>sda3<br></code></pre></td></tr></table></figure>
-
-<blockquote>
-<p>这个地方可能会报错，报 Device not found:/dev/sda3 ,这个时候可以将 liunx 重启一下，一般不会报错。</p>
-</blockquote>
-<p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.39pwnkdmdbs0.webp" srcset="/img/loading.gif" lazyload></p>
-<blockquote>
-<p>创建成功了就会如上图显示成功，同时查看了物理卷的信息，出现了新增的 sda3</p>
-</blockquote>
-<ul>
-<li>查看当前物理卷的使用情况</li>
-</ul>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">vgdisplay</span><br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.2h594oxdzyq0.webp" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>把创建的这个物理卷加进来</li>
-</ul>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-comment">#加上新加的卷</span><br>vgextend <span class="hljs-regexp">/dev/</span>centos<span class="hljs-regexp">/ /</span>dev/sda3<br><br><span class="hljs-comment">#展示当前卷的情况</span><br>vgdisplay<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.26vmb708mjvo.webp" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>查看一下新加卷</li>
-</ul>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">pvdisplay</span><br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.18r6ky8ggujk.webp" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>给更目录 root 分配空间</li>
-</ul>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs awk">lvextent -L+<span class="hljs-number">1</span>G <span class="hljs-regexp">/dev/</span>centos<span class="hljs-regexp">/root /</span>dev/sda3<br><br> resize2fs -p <span class="hljs-regexp">/dev/m</span>apper/centos-root <span class="hljs-number">10</span>G<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.59yfu3e5ei80.webp" srcset="/img/loading.gif" lazyload></p>
-<blockquote>
-<p>如果报了图片中的错误可以使用下面的命令</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#查看磁盘情况</span><br><span class="hljs-built_in">df</span> -h<br><br>xfs_growfs /dev/mapper/centos-root<br><br><span class="hljs-comment">#再次查看磁盘</span><br><span class="hljs-built_in">df</span> -h<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.5zoe8ezoqnk0.webp" srcset="/img/loading.gif" lazyload></p>
-<blockquote>
-<p>下面磁盘空间变化了，说明扩容好了</p>
-</blockquote>
 
                 
               </div>
@@ -380,7 +342,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/liunx/" class="category-chain-item">liunx</a>
+  <a href="/categories/node/" class="category-chain-item">node</a>
   
   
 
@@ -395,7 +357,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/liunx/">#liunx</a>
+        <a href="/tags/tabby/">#tabby</a>
       
     </div>
   
@@ -407,8 +369,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>liunx磁盘扩容</div>
-      <div>http://example.com/2022/07/24/liunx-kuorong/</div>
+      <div>tabby</div>
+      <div>http://example.com/2022/07/27/tabby/</div>
     </div>
     <div class="license-meta">
       
@@ -420,7 +382,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年7月24日</div>
+          <div>2022年7月27日</div>
         </div>
       
       
@@ -450,18 +412,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/07/27/tabby/" title="tabby">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">tabby</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/07/22/dubbo/" title="springboot项目改造成dubbo微服务项目">
-                        <span class="hidden-mobile">springboot项目改造成dubbo微服务项目</span>
+                      <a href="/2022/07/24/liunx-kuorong/" title="liunx磁盘扩容">
+                        <span class="hidden-mobile">liunx磁盘扩容</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
