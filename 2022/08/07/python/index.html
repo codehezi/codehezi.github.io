@@ -16,34 +16,25 @@
   <meta name="author" content="codehezi">
   <meta name="keywords" content="">
   
-    <meta name="description" content="性能强大且优雅的远程连接工具 tabby 点击名称可跳转 GitHub 下载各个版本的安装包    windows 版的安装程序，下载双击直接下一步安装即可  安装完成  设置步骤  (1)  (2)  (3)  (4)  (5)  (7)  (6)  (7)  (8)  (9)    至此，安装和配置远程服务器完毕">
+    <meta name="description" content="python 整合 redis 的简单使用 1.安装 redis 要使用的模块  123pip install redispip install python-redis   2.在项目中导入 redis 的模块  1import redis   3.配置 redis 的连接  1234567891011121314151617# 两种配置方式都可以使用import rediskwargs &#x3D; &amp;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="tabby">
-<meta property="og:url" content="http://example.com/2022/07/27/tabby/index.html">
+<meta property="og:title" content="python">
+<meta property="og:url" content="http://example.com/2022/08/07/python/index.html">
 <meta property="og:site_name" content="个人博客">
-<meta property="og:description" content="性能强大且优雅的远程连接工具 tabby 点击名称可跳转 GitHub 下载各个版本的安装包    windows 版的安装程序，下载双击直接下一步安装即可  安装完成  设置步骤  (1)  (2)  (3)  (4)  (5)  (7)  (6)  (7)  (8)  (9)    至此，安装和配置远程服务器完毕">
+<meta property="og:description" content="python 整合 redis 的简单使用 1.安装 redis 要使用的模块  123pip install redispip install python-redis   2.在项目中导入 redis 的模块  1import redis   3.配置 redis 的连接  1234567891011121314151617# 两种配置方式都可以使用import rediskwargs &#x3D; &amp;">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.243361vn98kg.webp">
-<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.5mftv62bmq40.webp">
-<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.6ml87xubf4w0.webp">
-<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.387c79fg348.webp">
-<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.5ya6fngeyd40.webp">
-<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.5ya6fngeyd40.webp">
-<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.7987qiwxqhw0.webp">
-<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.6mrx9dj2nhk0.webp">
-<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.6mrx9dj2nhk0.webp">
-<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.68w7vxdwz9o0.webp">
-<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.5walfnk96ok0.webp">
-<meta property="article:published_time" content="2022-07-27T11:33:45.000Z">
-<meta property="article:modified_time" content="2022-07-30T02:07:58.525Z">
+<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.55uclnbxhmk0.webp">
+<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.11vxtw1coffk.webp">
+<meta property="article:published_time" content="2022-08-07T09:51:46.000Z">
+<meta property="article:modified_time" content="2022-08-07T09:54:12.356Z">
 <meta property="article:author" content="codehezi">
-<meta property="article:tag" content="tabby">
+<meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.243361vn98kg.webp">
+<meta name="twitter:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.55uclnbxhmk0.webp">
   
   
   
-  <title>tabby - 个人博客</title>
+  <title>python - 个人博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -208,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="tabby"></span>
+            <span id="subtitle" data-typed-text="python"></span>
           
         </div>
 
@@ -219,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-07-27 19:33" pubdate>
-          2022年7月27日 晚上
+        <time datetime="2022-08-07 17:51" pubdate>
+          2022年8月7日 下午
         </time>
       </span>
     
@@ -231,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          122 字
+          1.8k 字
         
       </span>
     
@@ -242,7 +233,7 @@
         
         
         
-          2 分钟
+          15 分钟
         
       </span>
     
@@ -280,50 +271,39 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">tabby</h1>
+            <h1 style="display: none">python</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="性能强大且优雅的远程连接工具-tabby"><a href="#性能强大且优雅的远程连接工具-tabby" class="headerlink" title="性能强大且优雅的远程连接工具 tabby"></a><a target="_blank" rel="noopener" href="https://github.com/Eugeny/tabby/releases/tag/v1.0.164">性能强大且优雅的远程连接工具 tabby</a></h1><blockquote>
-<p>点击名称可跳转 GitHub 下载各个版本的安装包</p>
-</blockquote>
-<p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.243361vn98kg.webp" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li><p>windows 版的安装程序，下载双击直接下一步安装即可</p>
-</li>
-<li><p>安装完成</p>
-<ul>
-<li><p>设置步骤</p>
-<ul>
-<li><p>(1)<br><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.5mftv62bmq40.webp" srcset="/img/loading.gif" lazyload></p>
-</li>
-<li><p>(2)<br><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.6ml87xubf4w0.webp" srcset="/img/loading.gif" lazyload></p>
-</li>
-<li><p>(3)<br><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.387c79fg348.webp" srcset="/img/loading.gif" lazyload></p>
-</li>
-<li><p>(4)<br><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.5ya6fngeyd40.webp" srcset="/img/loading.gif" lazyload></p>
-</li>
-<li><p>(5)<br><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.5ya6fngeyd40.webp" srcset="/img/loading.gif" lazyload></p>
-</li>
-<li><p>(7)<br><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.7987qiwxqhw0.webp" srcset="/img/loading.gif" lazyload></p>
-</li>
-<li><p>(6)<br><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.6mrx9dj2nhk0.webp" srcset="/img/loading.gif" lazyload></p>
-</li>
-<li><p>(7)<br><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.6mrx9dj2nhk0.webp" srcset="/img/loading.gif" lazyload></p>
-</li>
-<li><p>(8)<br><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.68w7vxdwz9o0.webp" srcset="/img/loading.gif" lazyload></p>
-</li>
-<li><p>(9)<br><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.5walfnk96ok0.webp" srcset="/img/loading.gif" lazyload></p>
-</li>
+                <h1 id="python-整合-redis-的简单使用"><a href="#python-整合-redis-的简单使用" class="headerlink" title="python 整合 redis 的简单使用"></a>python 整合 redis 的简单使用</h1><ul>
+<li><strong>1.安装 redis 要使用的模块</strong></li>
 </ul>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cmake">pip <span class="hljs-keyword">install</span> redis<br><br>pip <span class="hljs-keyword">install</span> python-redis<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>2.<strong>在项目中导入 redis 的模块</strong></li>
+</ul>
+<figure class="highlight elm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs elm"><span class="hljs-keyword">import</span> redis<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>3.<strong>配置 redis 的连接</strong></li>
+</ul>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs clean"># 两种配置方式都可以使用<br><span class="hljs-keyword">import</span> redis<br><br>kwargs = &#123;<br>    <span class="hljs-string">&#x27;host&#x27;</span>: ip,<br>    <span class="hljs-string">&#x27;port&#x27;</span>: <span class="hljs-number">6379</span>,<br>    <span class="hljs-string">&#x27;decode_responses&#x27;</span>: <span class="hljs-literal">True</span>,<br>    <span class="hljs-string">&#x27;retry_on_timeout&#x27;</span>: <span class="hljs-number">3</span>, #重试次数<br>    <span class="hljs-string">&#x27;max_connections&#x27;</span>: <span class="hljs-number">1024</span>  # 默认<span class="hljs-number">2</span>^<span class="hljs-number">31</span><br>&#125;<br><br>pool = redis.ConnectionPool(**kwargs)<br>r = redis.Redis(connection_pool=pool)<br>r.flushdb<br># pool = redis.ConnectionPool(decode_responses=<span class="hljs-literal">True</span>)                   # 建立连接池<br># r = redis.Redis(connection_pool=pool,host=ip, port=<span class="hljs-number">6379</span>)   # 从连接池获取连接<br><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>4.<strong>以爬取百度的图片为演示列子</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> requests<br><span class="hljs-keyword">import</span> re<br><span class="hljs-keyword">import</span> json<br><span class="hljs-keyword">from</span> data <span class="hljs-keyword">import</span> redisDB <span class="hljs-comment">#这个是上面配置封装的模块</span><br><br>keywords = <span class="hljs-string">&quot;风景图片自然&quot;</span>;<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">getImages</span>():<br>    url = <span class="hljs-string">f&#x27;https://image.baidu.com/search/index?ct=201326592&amp;tn=baiduimage&amp;word=<span class="hljs-subst">&#123;keywords&#125;</span>&amp;pn=&amp;spn=&amp;ie=utf-8&amp;oe=utf-8&amp;cl=2&amp;lm=-1&amp;fr=ala&amp;se=&amp;sme=&amp;cs=&amp;os=&amp;objurl=&amp;di=&amp;tt=&amp;gsm=5a&amp;dyTabStr=MCwzLDIsNiwxLDQsNSw3LDgsOQ%3D%3D&#x27;</span><br>    headers = &#123;<br>        <span class="hljs-string">&#x27;Accept&#x27;</span>: <span class="hljs-string">&#x27;text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9&#x27;</span>,<br>        <span class="hljs-string">&#x27;user-agent&#x27;</span>: <span class="hljs-string">&#x27;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36&#x27;</span><br>    &#125;<br>    response = requests.get(url=url, headers=headers, timeout=<span class="hljs-number">5</span>)<br>    content = re.findall(<span class="hljs-string">&quot;&#x27;imgData&#x27;,(.*?),&#123;&#125;]&#125;&quot;</span>, response.text)[<span class="hljs-number">0</span>] + <span class="hljs-string">&quot;,&#123;&#125;]&#125;&quot;</span><br>    jsonObj = json.loads(content)[<span class="hljs-string">&#x27;data&#x27;</span>]<br>    <span class="hljs-keyword">for</span> image <span class="hljs-keyword">in</span> jsonObj:<br>        <span class="hljs-keyword">try</span>:<br>            num = image[<span class="hljs-string">&#x27;thumbURL&#x27;</span>].split(<span class="hljs-string">&#x27;,&#x27;</span>)[<span class="hljs-number">0</span>].split(<span class="hljs-string">&#x27;=&#x27;</span>)[<span class="hljs-number">1</span>]<br>            redisDB.r.<span class="hljs-built_in">set</span>(<span class="hljs-string">&quot;image:&quot;</span>+num,image[<span class="hljs-string">&#x27;thumbURL&#x27;</span>])<br>        <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;图片不存在&quot;</span>)<br></code></pre></td></tr></table></figure>
+
 <blockquote>
-<p>至此，安装和配置远程服务器完毕</p>
+<p>操作的结果</p>
 </blockquote>
-</li>
-</ul>
-</li>
-</ul>
+<p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.55uclnbxhmk0.webp" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>每个 url 都是一张图片（图中的连接如下图，这个 url 可能时刻在变化）</p>
+</blockquote>
+<p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.11vxtw1coffk.webp" srcset="/img/loading.gif" lazyload></p>
 
                 
               </div>
@@ -342,7 +322,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/tabby/" class="category-chain-item">tabby</a>
+  <a href="/categories/python/" class="category-chain-item">python</a>
   
   
 
@@ -357,7 +337,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/tabby/">#tabby</a>
+        <a href="/tags/python/">#python</a>
       
     </div>
   
@@ -369,8 +349,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>tabby</div>
-      <div>http://example.com/2022/07/27/tabby/</div>
+      <div>python</div>
+      <div>http://example.com/2022/08/07/python/</div>
     </div>
     <div class="license-meta">
       
@@ -382,7 +362,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年7月27日</div>
+          <div>2022年8月7日</div>
         </div>
       
       
@@ -412,18 +392,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/08/07/python/" title="python">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">python</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/07/24/liunx-kuorong/" title="liunx磁盘扩容">
-                        <span class="hidden-mobile">liunx磁盘扩容</span>
+                      <a href="/2022/07/27/tabby/" title="tabby">
+                        <span class="hidden-mobile">tabby</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
