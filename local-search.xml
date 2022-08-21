@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>腾讯云轻量服务器部署fireshare</title>
+    <link href="/2022/08/21/liunx_system/"/>
+    <url>/2022/08/21/liunx_system/</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="腾讯云轻量服务器"><a href="#腾讯云轻量服务器" class="headerlink" title="腾讯云轻量服务器"></a><a href="https://cloud.tencent.com/">腾讯云轻量服务器</a></h1><blockquote><p>购买轻量服务器，这里以免费体验的服务器来演示</p></blockquote><h2 id="1-选择要安装的服务器"><a href="#1-选择要安装的服务器" class="headerlink" title="1.选择要安装的服务器"></a>1.选择要安装的服务器</h2><ul><li>（1）这里使用 docker 容器部署，所以直接安装含有 docker 基础镜像的服务器</li></ul><p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.41sql6epvhm0.webp" alt="image"></p><ul><li>（2）安装完成后，如下图所示</li></ul><p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.5gf3z0mq1j00.webp" alt="image"></p><ul><li>（3）点击登录，进入腾讯云的远程连接管理界面，当然你也可以使用自己的 xshell 或者 findshell 等等其他的远程连接工具连接</li></ul><p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.29myx2469q68.webp" alt="image"></p><blockquote><p>点击登录后直接显示默认的登录的用户，直接登录即可。注意：这里要是想使用其他远程连接工具的话，可以通过 ubuntu 这个用户来连接，但是要设置下密码。</p></blockquote><ul><li>（4）切换 root 用户</li></ul><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">sudo -<span class="hljs-selector-tag">i</span><br></code></pre></td></tr></table></figure><p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.4far8xd8ubu0.webp" alt="image"></p><ul><li>（5）更新下软件包</li></ul><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">apt update -y</span><br></code></pre></td></tr></table></figure><ul><li>（6）更新下镜像文件</li></ul><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">apt upgrade -y</span><br></code></pre></td></tr></table></figure><ul><li>（7）安装下 swap,如果系统内存配置不够可以使用这个设置一下内存</li></ul><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">wget -O box.sh  https:<span class="hljs-regexp">//</span>raw.githubusercontent.com<span class="hljs-regexp">/BlueSkyXN/</span>SKY-BOX<span class="hljs-regexp">/main/</span>box.sh &amp;&amp; chmod +x box.sh &amp;&amp; clear &amp;&amp; ./box.sh<br></code></pre></td></tr></table></figure><ul><li>（8）建 docker 的镜像管理目录</li></ul><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">mkdir <span class="hljs-regexp">/root/</span>data/docker_data<br></code></pre></td></tr></table></figure><ul><li>（9）进入 docker_data 下，建 fireshare 的文件夹和 docker-compose 的配置文件，下载 fireshare 的镜像文件</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#进入文件夹</span><br><span class="hljs-built_in">cd</span> /root/data/docker_data<br><br><span class="hljs-comment">#创建文件夹</span><br><span class="hljs-built_in">mkdir</span> fireshare<br><br><br><span class="hljs-comment">#添加docker-compose 配置文件</span><br>version: <span class="hljs-string">&#x27;3.7&#x27;</span><br>services:<br>   fireshare:<br>        container_name: fireshare<br>        image: shaneisrael/fireshare:latest  <span class="hljs-comment">#latest表示最新版本</span><br>        ports:<br>          - <span class="hljs-string">&quot;8080:80&quot;</span>  <span class="hljs-comment">#冒号左边的端口可以自己修改成服务器未占用的端口，冒号右边不要修改</span><br>        volumes:<br>          - ./data:/data<br>          - ./processed:/processed<br>          - ./videos:/videos<br>        environment:<br>          - ADMIN_USERNAME=*** <span class="hljs-comment">#自己设置一个用户名</span><br>          - ADMIN_PASSWORD=***** <span class="hljs-comment">#自己设置一个密码</span><br><br><span class="hljs-comment">#下再fireshare的镜像文件,并启动</span><br>docker-compose up -d<br><br></code></pre></td></tr></table></figure><ul><li>（10）安装完成后可以使用公网 ip+端口去访问</li></ul><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">http:<span class="hljs-regexp">//</span>公网ip:<span class="hljs-number">8080</span><br></code></pre></td></tr></table></figure><blockquote><p>注意：这个时候可能无法访问，需要去服务器管理页面设置下防火墙，轻量应用服务器这个端口没有默认开放，需要手动设置开放，如下图：</p></blockquote><p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.1tnn7mop00w0.webp" alt="image"></p><blockquote><p>配置完这个端口再使用http://公网ip:8080访问就会出现下图效果</p></blockquote><p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.7jzklqempxs0.webp" alt="image"></p><blockquote><p>出现这样的显示，说明这个搭建成功了,现在就可以上传视频分享了</p></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>liunx</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>liunx</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>elasticsearch</title>
     <link href="/2022/08/14/elasticsearch/"/>
     <url>/2022/08/14/elasticsearch/</url>
