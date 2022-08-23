@@ -16,29 +16,25 @@
   <meta name="author" content="codehezi">
   <meta name="keywords" content="">
   
-    <meta name="description" content="腾讯云轻量服务器 购买轻量服务器，这里以免费体验的服务器来演示  1.选择要安装的服务器 （1）这里使用 docker 容器部署，所以直接安装含有 docker 基础镜像的服务器    （2）安装完成后，如下图所示    （3）点击登录，进入腾讯云的远程连接管理界面，当然你也可以使用自己的 xshell 或者 findshell 等等其他的远程连接工具连接    点击登录后直接显示默认的登录的用户">
+    <meta name="description" content="1.查看 node 的官网：https:&#x2F;&#x2F;nodejs.org&#x2F;en&#x2F;download&#x2F; 2.使用 wget 命令去下载 node，获取最新的 node.js 版本123456789101112#先进入local文件下cd &#x2F;usr&#x2F;local#创建node的文件夹mkdir node#然后进入node文件下cd node#在node文件下使用wget命令下载node包wget https:&#x2F;&#x2F;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="腾讯云轻量服务器部署fireshare">
-<meta property="og:url" content="http://example.com/2022/08/21/liunx_system/index.html">
+<meta property="og:title" content="liunx安装node环境">
+<meta property="og:url" content="http://example.com/2022/08/23/liunx%E5%AE%89%E8%A3%85node/index.html">
 <meta property="og:site_name" content="个人博客">
-<meta property="og:description" content="腾讯云轻量服务器 购买轻量服务器，这里以免费体验的服务器来演示  1.选择要安装的服务器 （1）这里使用 docker 容器部署，所以直接安装含有 docker 基础镜像的服务器    （2）安装完成后，如下图所示    （3）点击登录，进入腾讯云的远程连接管理界面，当然你也可以使用自己的 xshell 或者 findshell 等等其他的远程连接工具连接    点击登录后直接显示默认的登录的用户">
+<meta property="og:description" content="1.查看 node 的官网：https:&#x2F;&#x2F;nodejs.org&#x2F;en&#x2F;download&#x2F; 2.使用 wget 命令去下载 node，获取最新的 node.js 版本123456789101112#先进入local文件下cd &#x2F;usr&#x2F;local#创建node的文件夹mkdir node#然后进入node文件下cd node#在node文件下使用wget命令下载node包wget https:&#x2F;&#x2F;">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.41sql6epvhm0.webp">
-<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.5gf3z0mq1j00.webp">
-<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.29myx2469q68.webp">
-<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.4far8xd8ubu0.webp">
-<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.1tnn7mop00w0.webp">
-<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.7jzklqempxs0.webp">
-<meta property="article:published_time" content="2022-08-21T07:52:45.000Z">
-<meta property="article:modified_time" content="2022-08-21T07:53:59.260Z">
+<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/images@master/images/image.76zh2vxzi3o0.webp">
+<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/images@master/images/image.2qu0h1funl20.webp">
+<meta property="article:published_time" content="2022-08-23T06:10:46.000Z">
+<meta property="article:modified_time" content="2022-08-23T08:13:34.359Z">
 <meta property="article:author" content="codehezi">
-<meta property="article:tag" content="liunx">
+<meta property="article:tag" content="node">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.41sql6epvhm0.webp">
+<meta name="twitter:image" content="https://cdn.staticaly.com/gh/codehezi/images@master/images/image.76zh2vxzi3o0.webp">
   
   
   
-  <title>腾讯云轻量服务器部署fireshare - 个人博客</title>
+  <title>liunx安装node环境 - 个人博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -203,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="腾讯云轻量服务器部署fireshare"></span>
+            <span id="subtitle" data-typed-text="liunx安装node环境"></span>
           
         </div>
 
@@ -214,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-08-21 15:52" pubdate>
-          2022年8月21日 下午
+        <time datetime="2022-08-23 14:10" pubdate>
+          2022年8月23日 下午
         </time>
       </span>
     
@@ -226,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k 字
+          530 字
         
       </span>
     
@@ -237,7 +233,7 @@
         
         
         
-          10 分钟
+          5 分钟
         
       </span>
     
@@ -275,76 +271,28 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">腾讯云轻量服务器部署fireshare</h1>
+            <h1 style="display: none">liunx安装node环境</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="腾讯云轻量服务器"><a href="#腾讯云轻量服务器" class="headerlink" title="腾讯云轻量服务器"></a><a target="_blank" rel="noopener" href="https://cloud.tencent.com/">腾讯云轻量服务器</a></h1><blockquote>
-<p>购买轻量服务器，这里以免费体验的服务器来演示</p>
-</blockquote>
-<h2 id="1-选择要安装的服务器"><a href="#1-选择要安装的服务器" class="headerlink" title="1.选择要安装的服务器"></a>1.选择要安装的服务器</h2><ul>
-<li>（1）这里使用 docker 容器部署，所以直接安装含有 docker 基础镜像的服务器</li>
-</ul>
-<p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.41sql6epvhm0.webp" srcset="/img/loading.gif" lazyload alt="image"></p>
-<ul>
-<li>（2）安装完成后，如下图所示</li>
-</ul>
-<p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.5gf3z0mq1j00.webp" srcset="/img/loading.gif" lazyload alt="image"></p>
-<ul>
-<li>（3）点击登录，进入腾讯云的远程连接管理界面，当然你也可以使用自己的 xshell 或者 findshell 等等其他的远程连接工具连接</li>
-</ul>
-<p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.29myx2469q68.webp" srcset="/img/loading.gif" lazyload alt="image"></p>
-<blockquote>
-<p>点击登录后直接显示默认的登录的用户，直接登录即可。注意：这里要是想使用其他远程连接工具的话，可以通过 ubuntu 这个用户来连接，但是要设置下密码。</p>
-</blockquote>
-<ul>
-<li>（4）切换 root 用户</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">sudo -<span class="hljs-selector-tag">i</span><br></code></pre></td></tr></table></figure>
+                <h2 id="1-查看-node-的官网：https-nodejs-org-en-download"><a href="#1-查看-node-的官网：https-nodejs-org-en-download" class="headerlink" title="1.查看 node 的官网：https://nodejs.org/en/download/"></a>1.查看 node 的官网：<a target="_blank" rel="noopener" href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a></h2><p><img src="https://cdn.staticaly.com/gh/codehezi/images@master/images/image.76zh2vxzi3o0.webp" srcset="/img/loading.gif" lazyload alt="image"></p>
+<h2 id="2-使用-wget-命令去下载-node，获取最新的-node-js-版本"><a href="#2-使用-wget-命令去下载-node，获取最新的-node-js-版本" class="headerlink" title="2.使用 wget 命令去下载 node，获取最新的 node.js 版本"></a>2.使用 wget 命令去下载 node，获取最新的 node.js 版本</h2><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs crmsh"><span class="hljs-comment">#先进入local文件下</span><br>cd /usr/local<br><br><span class="hljs-comment">#创建node的文件夹</span><br>mkdir <span class="hljs-keyword">node</span><br><br><span class="hljs-title">#然后进入node</span>文件下<br>cd <span class="hljs-keyword">node</span><br><br><span class="hljs-title">#在node</span>文件下使用wget命令下载<span class="hljs-keyword">node</span><span class="hljs-title">包</span><br><span class="hljs-title">wget</span> https://nodejs.org/dist/v16.<span class="hljs-number">17.0</span>/<span class="hljs-keyword">node</span><span class="hljs-title">-v16</span>.<span class="hljs-number">17.0</span>-linux-x64.tar.xz<br><br></code></pre></td></tr></table></figure>
 
-<p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.4far8xd8ubu0.webp" srcset="/img/loading.gif" lazyload alt="image"></p>
-<ul>
-<li>（5）更新下软件包</li>
-</ul>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">apt update -y</span><br></code></pre></td></tr></table></figure>
-
-<ul>
-<li>（6）更新下镜像文件</li>
-</ul>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">apt upgrade -y</span><br></code></pre></td></tr></table></figure>
-
-<ul>
-<li>（7）安装下 swap,如果系统内存配置不够可以使用这个设置一下内存</li>
-</ul>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">wget -O box.sh  https:<span class="hljs-regexp">//</span>raw.githubusercontent.com<span class="hljs-regexp">/BlueSkyXN/</span>SKY-BOX<span class="hljs-regexp">/main/</span>box.sh &amp;&amp; chmod +x box.sh &amp;&amp; clear &amp;&amp; ./box.sh<br></code></pre></td></tr></table></figure>
-
-<ul>
-<li>（8）建 docker 的镜像管理目录</li>
-</ul>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">mkdir <span class="hljs-regexp">/root/</span>data/docker_data<br></code></pre></td></tr></table></figure>
-
-<ul>
-<li>（9）进入 docker_data 下，建 fireshare 的文件夹和 docker-compose 的配置文件，下载 fireshare 的镜像文件</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#进入文件夹</span><br><span class="hljs-built_in">cd</span> /root/data/docker_data<br><br><span class="hljs-comment">#创建文件夹</span><br><span class="hljs-built_in">mkdir</span> fireshare<br><br><br><span class="hljs-comment">#添加docker-compose 配置文件</span><br>version: <span class="hljs-string">&#x27;3.7&#x27;</span><br>services:<br>   fireshare:<br>        container_name: fireshare<br>        image: shaneisrael/fireshare:latest  <span class="hljs-comment">#latest表示最新版本</span><br>        ports:<br>          - <span class="hljs-string">&quot;8080:80&quot;</span>  <span class="hljs-comment">#冒号左边的端口可以自己修改成服务器未占用的端口，冒号右边不要修改</span><br>        volumes:<br>          - ./data:/data<br>          - ./processed:/processed<br>          - ./videos:/videos<br>        environment:<br>          - ADMIN_USERNAME=*** <span class="hljs-comment">#自己设置一个用户名</span><br>          - ADMIN_PASSWORD=***** <span class="hljs-comment">#自己设置一个密码</span><br><br><span class="hljs-comment">#下再fireshare的镜像文件,并启动</span><br>docker-compose up -d<br><br></code></pre></td></tr></table></figure>
-
-<ul>
-<li>（10）安装完成后可以使用公网 ip+端口去访问</li>
-</ul>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">http:<span class="hljs-regexp">//</span>公网ip:<span class="hljs-number">8080</span><br></code></pre></td></tr></table></figure>
+<h2 id="3-解压当前的压缩包"><a href="#3-解压当前的压缩包" class="headerlink" title="3.解压当前的压缩包"></a>3.解压当前的压缩包</h2><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">tar -xvf <span class="hljs-keyword">node</span><span class="hljs-title">-v16</span>.<span class="hljs-number">17.0</span>-linux-x64.tar.xz<br><br></code></pre></td></tr></table></figure>
 
 <blockquote>
-<p>注意：这个时候可能无法访问，需要去服务器管理页面设置下防火墙，轻量应用服务器这个端口没有默认开放，需要手动设置开放，如下图：</p>
+<p>这个文件是已经编译好的 node 文件，不需要再去编译，只要在环境变量中配置一下就可以使用</p>
 </blockquote>
-<p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.1tnn7mop00w0.webp" srcset="/img/loading.gif" lazyload alt="image"></p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-comment">#修改etc下的profile文件</span><br>vim <span class="hljs-regexp">/etc/</span>profile<br><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.staticaly.com/gh/codehezi/images@master/images/image.2qu0h1funl20.webp" srcset="/img/loading.gif" lazyload alt="image"></p>
+<h2 id="4-在-profile-文件的最后位置加上这个配置即可"><a href="#4-在-profile-文件的最后位置加上这个配置即可" class="headerlink" title="4.在 profile 文件的最后位置加上这个配置即可"></a>4.在 profile 文件的最后位置加上这个配置即可</h2><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs elixir">export <span class="hljs-title class_">PATH</span>=<span class="hljs-variable">$PATH</span><span class="hljs-symbol">:/usr/local/node/node-v14</span>.<span class="hljs-number">15.3</span>-linux-x64/bin<br></code></pre></td></tr></table></figure>
+
 <blockquote>
-<p>配置完这个端口再使用http://公网ip:8080访问就会出现下图效果</p>
+<p><font style='color:red'>注意：</font>这个路径是解压后的文件下 bin 的路径，以你自己的路径为准</p>
 </blockquote>
-<p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.7jzklqempxs0.webp" srcset="/img/loading.gif" lazyload alt="image"></p>
-<blockquote>
-<p>出现这样的显示，说明这个搭建成功了,现在就可以上传视频分享了</p>
-</blockquote>
+<h2 id="5-最后-source-一下这个文件，让这个文件生效"><a href="#5-最后-source-一下这个文件，让这个文件生效" class="headerlink" title="5.最后 source 一下这个文件，让这个文件生效"></a>5.最后 source 一下这个文件，让这个文件生效</h2><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gradle"><span class="hljs-keyword">source</span> <span class="hljs-regexp">/etc/</span>profile<br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -363,7 +311,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/liunx/" class="category-chain-item">liunx</a>
+  <a href="/categories/node/" class="category-chain-item">node</a>
   
   
 
@@ -378,7 +326,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/liunx/">#liunx</a>
+        <a href="/tags/node/">#node</a>
       
     </div>
   
@@ -390,8 +338,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>腾讯云轻量服务器部署fireshare</div>
-      <div>http://example.com/2022/08/21/liunx_system/</div>
+      <div>liunx安装node环境</div>
+      <div>http://example.com/2022/08/23/liunx安装node/</div>
     </div>
     <div class="license-meta">
       
@@ -403,7 +351,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年8月21日</div>
+          <div>2022年8月23日</div>
         </div>
       
       
@@ -433,18 +381,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/08/23/liunx%E5%AE%89%E8%A3%85node/" title="liunx安装node环境">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">liunx安装node环境</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/08/14/elasticsearch/" title="elasticsearch">
-                        <span class="hidden-mobile">elasticsearch</span>
+                      <a href="/2022/08/21/liunx_system/" title="腾讯云轻量服务器部署fireshare">
+                        <span class="hidden-mobile">腾讯云轻量服务器部署fireshare</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

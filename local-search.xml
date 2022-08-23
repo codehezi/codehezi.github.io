@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>liunx安装node环境</title>
+    <link href="/2022/08/23/liunx%E5%AE%89%E8%A3%85node/"/>
+    <url>/2022/08/23/liunx%E5%AE%89%E8%A3%85node/</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="1-查看-node-的官网：https-nodejs-org-en-download"><a href="#1-查看-node-的官网：https-nodejs-org-en-download" class="headerlink" title="1.查看 node 的官网：https://nodejs.org/en/download/"></a>1.查看 node 的官网：<a href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a></h2><p><img src="https://cdn.staticaly.com/gh/codehezi/images@master/images/image.76zh2vxzi3o0.webp" alt="image"></p><h2 id="2-使用-wget-命令去下载-node，获取最新的-node-js-版本"><a href="#2-使用-wget-命令去下载-node，获取最新的-node-js-版本" class="headerlink" title="2.使用 wget 命令去下载 node，获取最新的 node.js 版本"></a>2.使用 wget 命令去下载 node，获取最新的 node.js 版本</h2><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs crmsh"><span class="hljs-comment">#先进入local文件下</span><br>cd /usr/local<br><br><span class="hljs-comment">#创建node的文件夹</span><br>mkdir <span class="hljs-keyword">node</span><br><br><span class="hljs-title">#然后进入node</span>文件下<br>cd <span class="hljs-keyword">node</span><br><br><span class="hljs-title">#在node</span>文件下使用wget命令下载<span class="hljs-keyword">node</span><span class="hljs-title">包</span><br><span class="hljs-title">wget</span> https://nodejs.org/dist/v16.<span class="hljs-number">17.0</span>/<span class="hljs-keyword">node</span><span class="hljs-title">-v16</span>.<span class="hljs-number">17.0</span>-linux-x64.tar.xz<br><br></code></pre></td></tr></table></figure><h2 id="3-解压当前的压缩包"><a href="#3-解压当前的压缩包" class="headerlink" title="3.解压当前的压缩包"></a>3.解压当前的压缩包</h2><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">tar -xvf <span class="hljs-keyword">node</span><span class="hljs-title">-v16</span>.<span class="hljs-number">17.0</span>-linux-x64.tar.xz<br><br></code></pre></td></tr></table></figure><blockquote><p>这个文件是已经编译好的 node 文件，不需要再去编译，只要在环境变量中配置一下就可以使用</p></blockquote><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-comment">#修改etc下的profile文件</span><br>vim <span class="hljs-regexp">/etc/</span>profile<br><br></code></pre></td></tr></table></figure><p><img src="https://cdn.staticaly.com/gh/codehezi/images@master/images/image.2qu0h1funl20.webp" alt="image"></p><h2 id="4-在-profile-文件的最后位置加上这个配置即可"><a href="#4-在-profile-文件的最后位置加上这个配置即可" class="headerlink" title="4.在 profile 文件的最后位置加上这个配置即可"></a>4.在 profile 文件的最后位置加上这个配置即可</h2><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs elixir">export <span class="hljs-title class_">PATH</span>=<span class="hljs-variable">$PATH</span><span class="hljs-symbol">:/usr/local/node/node-v14</span>.<span class="hljs-number">15.3</span>-linux-x64/bin<br></code></pre></td></tr></table></figure><blockquote><p><font style='color:red'>注意：</font>这个路径是解压后的文件下 bin 的路径，以你自己的路径为准</p></blockquote><h2 id="5-最后-source-一下这个文件，让这个文件生效"><a href="#5-最后-source-一下这个文件，让这个文件生效" class="headerlink" title="5.最后 source 一下这个文件，让这个文件生效"></a>5.最后 source 一下这个文件，让这个文件生效</h2><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gradle"><span class="hljs-keyword">source</span> <span class="hljs-regexp">/etc/</span>profile<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>node</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>node</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>腾讯云轻量服务器部署fireshare</title>
     <link href="/2022/08/21/liunx_system/"/>
     <url>/2022/08/21/liunx_system/</url>
