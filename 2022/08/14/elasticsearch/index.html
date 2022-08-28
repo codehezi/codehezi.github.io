@@ -1,740 +1,1074 @@
-
-
-<!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=dark>
-
+<!DOCTYPE HTML>
+<html lang="zh-CN">
 
 
 <head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="codehezi">
-  <meta name="keywords" content="">
-  
-    <meta name="description" content="docker 安装 elasticsearch 以及简单的使用1.elasticsearch 的安装 向 docker 容器 pullelasticsearch  1docker pull elasticsearch:7.7.0   查看安装后的镜像  1docker images    出现上图结果说明 elasticsearch 镜像已经安装完成   启动 elasticsearch 服务">
-<meta property="og:type" content="article">
-<meta property="og:title" content="elasticsearch">
-<meta property="og:url" content="http://example.com/2022/08/14/elasticsearch/index.html">
-<meta property="og:site_name" content="个人博客">
-<meta property="og:description" content="docker 安装 elasticsearch 以及简单的使用1.elasticsearch 的安装 向 docker 容器 pullelasticsearch  1docker pull elasticsearch:7.7.0   查看安装后的镜像  1docker images    出现上图结果说明 elasticsearch 镜像已经安装完成   启动 elasticsearch 服务">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.5rgbb4j4bmk0.webp">
-<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.57gjis4qkdo0.webp">
-<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.41i07r23ncq0.webp">
-<meta property="og:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.697fzevfjro0.webp">
-<meta property="article:published_time" content="2022-08-14T13:14:45.000Z">
-<meta property="article:modified_time" content="2022-08-14T13:16:19.407Z">
-<meta property="article:author" content="codehezi">
-<meta property="article:tag" content="elasticsearch">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.5rgbb4j4bmk0.webp">
-  
-  
-  
-  <title>elasticsearch - 个人博客</title>
+    <meta charset="utf-8">
+    <meta name="keywords" content="elasticsearch, 个人博客">
+    <meta name="description" content="docker 安装 elasticsearch 以及简单的使用1.elasticsearch 的安装
+向 docker 容器 pullelasticsearch
 
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+1docker pull elasticsearch:7.7.0
+
+
+查看安">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>elasticsearch | 个人博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
 
 
 
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
 
 
 
 
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
-    }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
 
 
-  
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
 <meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
-  
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">个人博客</span>
+                </a>
+            </div>
+            
 
-  <header>
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
     
-
-<div class="header-inner" style="height: 70vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>个人博客</strong>
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
     </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                首页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                关于
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
+    
+  </li>
   
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
 
-<div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">个人博客</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
           
-            <span id="subtitle" data-typed-text="elasticsearch"></span>
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
           
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
         </div>
 
         
-          
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-08-14 21:14" pubdate>
-          2022年8月14日 晚上
-        </time>
-      </span>
-    
-  </div>
+    </nav>
 
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
-        
-          3.8k 字
-        
-      </span>
-    
+</header>
 
     
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          32 分钟
-        
-      </span>
-    
-
-    
-    
-  </div>
 
 
-        
-      </div>
 
-      
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">elasticsearch</h1>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
-</div>
 
-  </header>
 
-  <main>
+
+<main class="post-container content">
+
     
-      
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/elasticsearch/">
+                                <span class="chip bg-color">elasticsearch</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/elasticsearch/" class="post-category">
+                                elasticsearch
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
 
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-
-    </div>
-
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">elasticsearch</h1>
-            
-            
-              <div class="markdown-body">
+            <div class="post-info">
                 
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-08-14
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
                 <h1 id="docker-安装-elasticsearch-以及简单的使用"><a href="#docker-安装-elasticsearch-以及简单的使用" class="headerlink" title="docker 安装 elasticsearch 以及简单的使用"></a>docker 安装 elasticsearch 以及简单的使用</h1><h2 id="1-elasticsearch-的安装"><a href="#1-elasticsearch-的安装" class="headerlink" title="1.elasticsearch 的安装"></a>1.elasticsearch 的安装</h2><ul>
 <li>向 docker 容器 pullelasticsearch</li>
 </ul>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">docker</span> pull elasticsearch:<span class="hljs-number">7</span>.<span class="hljs-number">7</span>.<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull elasticsearch:7.7.0</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>查看安装后的镜像</li>
 </ul>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">docker images</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.5rgbb4j4bmk0.webp" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.5rgbb4j4bmk0.webp"></p>
 <blockquote>
 <p>出现上图结果说明 elasticsearch 镜像已经安装完成</p>
 </blockquote>
 <ul>
 <li>启动 elasticsearch 服务</li>
 </ul>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">docker</span> run --name elasticsearch -d -e ES_JAVA_OPTS=<span class="hljs-string">&quot;-Xms512m -Xmx512m&quot;</span> -e <span class="hljs-string">&quot;discovery.type=single-node&quot;</span> -p <span class="hljs-number">9200</span>:<span class="hljs-number">9200</span> -p <span class="hljs-number">9300</span>:<span class="hljs-number">9300</span> elasticsearch:<span class="hljs-number">7</span>.<span class="hljs-number">7</span>.<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name elasticsearch -d -e ES_JAVA_OPTS=&quot;-Xms512m -Xmx512m&quot; -e &quot;discovery.type=single-node&quot; -p 9200:9200 -p 9300:9300 elasticsearch:7.7.0</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.57gjis4qkdo0.webp" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.57gjis4qkdo0.webp"></p>
 <blockquote>
 <p>注意：这个地方的第一个端口指的是 http 外部的访问接口，第二端口指的是集群间的通信端口，使用(<a href="http://localhost:9200)访问时出现上图结果，说明">http://localhost:9200)访问时出现上图结果，说明</a> elasticsearch 服务启动成功</p>
 </blockquote>
 <h2 id="2-elasticsearch-的使用"><a href="#2-elasticsearch-的使用" class="headerlink" title="2.elasticsearch 的使用"></a>2.elasticsearch 的使用</h2><ul>
 <li>（1）增加索引</li>
 </ul>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-comment">#put</span><br>http:<span class="hljs-regexp">//</span>localhost:<span class="hljs-number">9200</span>/test1<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#put</span><br><span class="line">http://localhost:9200/test1</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.41i07r23ncq0.webp" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.41i07r23ncq0.webp"></p>
 <blockquote>
 <p>出现图中返回结果说明索引添加成功。注意：增加索引是幂等性的，需要使用 put 请求</p>
 </blockquote>
 <ul>
 <li>（2）查看增加的索引</li>
 </ul>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-comment">#get</span><br>http:<span class="hljs-regexp">//</span>localhost:<span class="hljs-number">9200</span><span class="hljs-regexp">/_cat/i</span>ndices?v<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#get</span><br><span class="line">http://localhost:9200/_cat/indices?v</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.697fzevfjro0.webp" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.697fzevfjro0.webp"></p>
 <p>-（3）删除索引</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-comment">#delete</span><br>http:<span class="hljs-regexp">//</span>localhost:<span class="hljs-number">9200</span>/test1<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#delete</span><br><span class="line">http://localhost:9200/test1</span><br></pre></td></tr></table></figure>
 
 <p>-（4）向索引中添加文档数据</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-comment">#put(1001是指定的id,是幂等性的，所以可以使用put)</span><br>http:<span class="hljs-regexp">//</span>localhost:<span class="hljs-number">9200</span><span class="hljs-regexp">/test1/</span>_doc/<span class="hljs-number">1001</span><br><br><span class="hljs-comment">#传递的参数</span><br>&#123;<br> <span class="hljs-string">&quot;name&quot;</span>:<span class="hljs-string">&quot;test数据&quot;</span>,<br> <span class="hljs-string">&quot;age&quot;</span>:<span class="hljs-number">12</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#put(1001是指定的id,是幂等性的，所以可以使用put)</span><br><span class="line">http://localhost:9200/test1/_doc/1001</span><br><span class="line"></span><br><span class="line">#传递的参数</span><br><span class="line">&#123;</span><br><span class="line"> &quot;name&quot;:&quot;test数据&quot;,</span><br><span class="line"> &quot;age&quot;:12</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>（5）查询所有的添加的数据</li>
 </ul>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-comment">#get</span><br>http:<span class="hljs-regexp">//</span>localhost:<span class="hljs-number">9200</span><span class="hljs-regexp">/test/</span>_search<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#get</span><br><span class="line">http://localhost:9200/test/_search</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>（6）根据 id 查询文档的数据</li>
 </ul>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-comment">#get</span><br>http:<span class="hljs-regexp">//</span>localhost:<span class="hljs-number">9200</span><span class="hljs-regexp">/test/</span>_doc/<span class="hljs-number">1001</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#get</span><br><span class="line">http://localhost:9200/test/_doc/1001</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>（7）修改文档数据</li>
 </ul>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-comment">#put（_doc后面跟id这种是全覆盖修改，幂等性）</span><br>http:<span class="hljs-regexp">//</span>localhost:<span class="hljs-number">9200</span><span class="hljs-regexp">/test/</span>_doc/<span class="hljs-number">1001</span><br><br><span class="hljs-comment">#传递的参数</span><br>&#123;<br>    <span class="hljs-string">&quot;name&quot;</span>:<span class="hljs-string">&quot;覆盖&quot;</span>,<br>    <span class="hljs-string">&quot;age&quot;</span>:<span class="hljs-number">12</span>,<br>    <span class="hljs-string">&quot;test&quot;</span>:<span class="hljs-string">&quot;wq&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#put（_doc后面跟id这种是全覆盖修改，幂等性）</span><br><span class="line">http://localhost:9200/test/_doc/1001</span><br><span class="line"></span><br><span class="line">#传递的参数</span><br><span class="line">&#123;</span><br><span class="line">    &quot;name&quot;:&quot;覆盖&quot;,</span><br><span class="line">    &quot;age&quot;:12,</span><br><span class="line">    &quot;test&quot;:&quot;wq&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>（8）局部覆盖修改</li>
 </ul>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-comment">#post（_update这种是局部覆盖修改，非幂等性）</span><br>http:<span class="hljs-regexp">//</span>localhost:<span class="hljs-number">9200</span><span class="hljs-regexp">/test/</span>_update/<span class="hljs-number">1001</span><br><br><span class="hljs-comment">#传递的参数</span><br>&#123;<br>    <span class="hljs-string">&quot;doc&quot;</span>:&#123;<br>        <span class="hljs-string">&quot;name&quot;</span>:<span class="hljs-string">&quot;局部覆盖&quot;</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#post（_update这种是局部覆盖修改，非幂等性）</span><br><span class="line">http://localhost:9200/test/_update/1001</span><br><span class="line"></span><br><span class="line">#传递的参数</span><br><span class="line">&#123;</span><br><span class="line">    &quot;doc&quot;:&#123;</span><br><span class="line">        &quot;name&quot;:&quot;局部覆盖&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>（9）删除文档数据</li>
 </ul>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-comment">#delete</span><br>http:<span class="hljs-regexp">//</span>localhost:<span class="hljs-number">9200</span><span class="hljs-regexp">/test/</span>_doc/<span class="hljs-number">1001</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#delete</span><br><span class="line">http://localhost:9200/test/_doc/1001</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>（10）根据条件查询文档数据</li>
 </ul>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-comment">#post</span><br>http:<span class="hljs-regexp">//</span>localhost:<span class="hljs-number">9200</span><span class="hljs-regexp">/test/</span>_search<br><br><span class="hljs-comment">#传递的参数</span><br>&#123;<br>    <span class="hljs-string">&quot;query&quot;</span>:&#123;<br>        <span class="hljs-string">&quot;match&quot;</span>:&#123;<br>            <span class="hljs-string">&quot;name&quot;</span>:<span class="hljs-string">&quot;部分覆盖&quot;</span><br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">#这种是查询所有的文档数据</span><br>&#123;<br>    <span class="hljs-string">&quot;query&quot;</span>:&#123;<br>        <span class="hljs-string">&quot;match_all&quot;</span>:&#123;<br><br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">#post</span><br><span class="line">http://localhost:9200/test/_search</span><br><span class="line"></span><br><span class="line">#传递的参数</span><br><span class="line">&#123;</span><br><span class="line">    &quot;query&quot;:&#123;</span><br><span class="line">        &quot;match&quot;:&#123;</span><br><span class="line">            &quot;name&quot;:&quot;部分覆盖&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#这种是查询所有的文档数据</span><br><span class="line">&#123;</span><br><span class="line">    &quot;query&quot;:&#123;</span><br><span class="line">        &quot;match_all&quot;:&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>（11）分页查询</li>
 </ul>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-comment">#post</span><br>http:<span class="hljs-regexp">//</span>localhost:<span class="hljs-number">9200</span><span class="hljs-regexp">/test/</span>_search<br><br><span class="hljs-comment">#传递的参数</span><br>&#123;<br>    <span class="hljs-string">&quot;query&quot;</span>:&#123;<br>        <span class="hljs-string">&quot;match_all&quot;</span>:&#123;<br><br>        &#125;<br>    &#125;,<br>    <span class="hljs-string">&quot;from&quot;</span>:<span class="hljs-number">0</span>,<span class="hljs-comment">#标识第几页</span><br>    <span class="hljs-string">&quot;size&quot;</span>:<span class="hljs-number">2</span><span class="hljs-comment">#表示一页展示多少数据</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#post</span><br><span class="line">http://localhost:9200/test/_search</span><br><span class="line"></span><br><span class="line">#传递的参数</span><br><span class="line">&#123;</span><br><span class="line">    &quot;query&quot;:&#123;</span><br><span class="line">        &quot;match_all&quot;:&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;from&quot;:0,#标识第几页</span><br><span class="line">    &quot;size&quot;:2#表示一页展示多少数据</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>（12）查询时规定要查询的字段</li>
 </ul>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-comment">#post</span><br>http:<span class="hljs-regexp">//</span>localhost:<span class="hljs-number">9200</span><span class="hljs-regexp">/test/</span>_search<br><br><span class="hljs-comment">#传递的参数</span><br>&#123;<br>    <span class="hljs-string">&quot;query&quot;</span>:&#123;<br>        <span class="hljs-string">&quot;match_all&quot;</span>:&#123;<br><br>        &#125;<br>    &#125;,<br>    <span class="hljs-string">&quot;from&quot;</span>:<span class="hljs-number">0</span>,<span class="hljs-comment">#标识第几页</span><br>    <span class="hljs-string">&quot;size&quot;</span>:<span class="hljs-number">2</span>,<span class="hljs-comment">#表示一页展示多少数据</span><br>    <span class="hljs-string">&quot;_source&quot;</span>:[<span class="hljs-string">&quot;name&quot;</span>] <span class="hljs-comment">#标识要查询的字段</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#post</span><br><span class="line">http://localhost:9200/test/_search</span><br><span class="line"></span><br><span class="line">#传递的参数</span><br><span class="line">&#123;</span><br><span class="line">    &quot;query&quot;:&#123;</span><br><span class="line">        &quot;match_all&quot;:&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;from&quot;:0,#标识第几页</span><br><span class="line">    &quot;size&quot;:2,#表示一页展示多少数据</span><br><span class="line">    &quot;_source&quot;:[&quot;name&quot;] #标识要查询的字段</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>（13）排序查询</li>
 </ul>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-comment">#post</span><br>http:<span class="hljs-regexp">//</span>localhost:<span class="hljs-number">9200</span><span class="hljs-regexp">/test/</span>_search<br><br><span class="hljs-comment">#传递的参数</span><br>&#123;<br>    <span class="hljs-string">&quot;query&quot;</span>:&#123;<br>        <span class="hljs-string">&quot;match_all&quot;</span>:&#123;<br><br>        &#125;<br>    &#125;,<br>    <span class="hljs-string">&quot;from&quot;</span>:<span class="hljs-number">0</span>,<span class="hljs-comment">#标识第几页</span><br>    <span class="hljs-string">&quot;size&quot;</span>:<span class="hljs-number">2</span>,<span class="hljs-comment">#表示一页展示多少数据</span><br>    <span class="hljs-string">&quot;_source&quot;</span>:[<span class="hljs-string">&quot;name&quot;</span>], <span class="hljs-comment">#标识要查询的字段</span><br>    <span class="hljs-string">&quot;sort&quot;</span>:&#123;<br>        <span class="hljs-string">&quot;age&quot;</span>:&#123; <span class="hljs-comment">#要排序的字段</span><br>            <span class="hljs-string">&quot;order&quot;</span>:<span class="hljs-string">&quot;asc&quot;</span> <span class="hljs-comment">#排序的规则</span><br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#post</span><br><span class="line">http://localhost:9200/test/_search</span><br><span class="line"></span><br><span class="line">#传递的参数</span><br><span class="line">&#123;</span><br><span class="line">    &quot;query&quot;:&#123;</span><br><span class="line">        &quot;match_all&quot;:&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;from&quot;:0,#标识第几页</span><br><span class="line">    &quot;size&quot;:2,#表示一页展示多少数据</span><br><span class="line">    &quot;_source&quot;:[&quot;name&quot;], #标识要查询的字段</span><br><span class="line">    &quot;sort&quot;:&#123;</span><br><span class="line">        &quot;age&quot;:&#123; #要排序的字段</span><br><span class="line">            &quot;order&quot;:&quot;asc&quot; #排序的规则</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>（14）条件组合查询（相当于 SQL 里面的 and）</li>
 </ul>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-comment">#post</span><br>http:<span class="hljs-regexp">//</span>localhost:<span class="hljs-number">9200</span><span class="hljs-regexp">/test/</span>_search<br><br><br><span class="hljs-comment">#传递的参数</span><br>&#123;<br>    <span class="hljs-string">&quot;query&quot;</span>:&#123;<br>        <span class="hljs-string">&quot;bool&quot;</span>:&#123;<br>            <span class="hljs-string">&quot;must&quot;</span>:[<br>                &#123;<br>                    <span class="hljs-string">&quot;match&quot;</span>:&#123;<br>                        <span class="hljs-string">&quot;name&quot;</span>:<span class="hljs-string">&quot;局部覆盖&quot;</span><br>                    &#125;<br>                &#125;,<br>                &#123;<br>                    <span class="hljs-string">&quot;match&quot;</span>:&#123;<br>                        <span class="hljs-string">&quot;age&quot;</span>:<span class="hljs-number">12</span><br>                    &#125;<br>                &#125;<br>            ]<br>        &#125;<br>    &#125;,<br>    <span class="hljs-string">&quot;from&quot;</span>:<span class="hljs-number">0</span>,<span class="hljs-regexp">//</span>从某页开始<br>    <span class="hljs-string">&quot;size&quot;</span>:<span class="hljs-number">5</span><span class="hljs-regexp">//</span>每页查询多少条<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">#post</span><br><span class="line">http://localhost:9200/test/_search</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#传递的参数</span><br><span class="line">&#123;</span><br><span class="line">    &quot;query&quot;:&#123;</span><br><span class="line">        &quot;bool&quot;:&#123;</span><br><span class="line">            &quot;must&quot;:[</span><br><span class="line">                &#123;</span><br><span class="line">                    &quot;match&quot;:&#123;</span><br><span class="line">                        &quot;name&quot;:&quot;局部覆盖&quot;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    &quot;match&quot;:&#123;</span><br><span class="line">                        &quot;age&quot;:12</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;from&quot;:0,//从某页开始</span><br><span class="line">    &quot;size&quot;:5//每页查询多少条</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>（14）条件组合查询（相当于 SQL 里面的 or）</li>
 </ul>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-comment">#post</span><br>http:<span class="hljs-regexp">//</span>localhost:<span class="hljs-number">9200</span><span class="hljs-regexp">/test/</span>_search<br><br><span class="hljs-comment">#传递的参数</span><br>&#123;<br>    <span class="hljs-string">&quot;query&quot;</span>:&#123;<br>        <span class="hljs-string">&quot;bool&quot;</span>:&#123;<br>            <span class="hljs-string">&quot;should&quot;</span>:[<br>                &#123;<br>                    <span class="hljs-string">&quot;match&quot;</span>:&#123;<br>                        <span class="hljs-string">&quot;name&quot;</span>:<span class="hljs-string">&quot;局部覆盖&quot;</span><br>                    &#125;<br>                &#125;,<br>                &#123;<br>                    <span class="hljs-string">&quot;match&quot;</span>:&#123;<br>                        <span class="hljs-string">&quot;age&quot;</span>:<span class="hljs-number">12</span><br>                    &#125;<br>                &#125;<br>            ]<br>        &#125;<br>    &#125;,<br>    <span class="hljs-string">&quot;from&quot;</span>:<span class="hljs-number">0</span>,<span class="hljs-regexp">//</span>从某页开始<br>    <span class="hljs-string">&quot;size&quot;</span>:<span class="hljs-number">5</span><span class="hljs-regexp">//</span>每页查询多少条<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">#post</span><br><span class="line">http://localhost:9200/test/_search</span><br><span class="line"></span><br><span class="line">#传递的参数</span><br><span class="line">&#123;</span><br><span class="line">    &quot;query&quot;:&#123;</span><br><span class="line">        &quot;bool&quot;:&#123;</span><br><span class="line">            &quot;should&quot;:[</span><br><span class="line">                &#123;</span><br><span class="line">                    &quot;match&quot;:&#123;</span><br><span class="line">                        &quot;name&quot;:&quot;局部覆盖&quot;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    &quot;match&quot;:&#123;</span><br><span class="line">                        &quot;age&quot;:12</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;from&quot;:0,//从某页开始</span><br><span class="line">    &quot;size&quot;:5//每页查询多少条</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>（15）文档范围查询</li>
 </ul>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-comment">#post</span><br>http:<span class="hljs-regexp">//</span>localhost:<span class="hljs-number">9200</span><span class="hljs-regexp">/test/</span>_search<br><br><br><span class="hljs-comment">#传递的参数</span><br>&#123;<br>    <span class="hljs-string">&quot;query&quot;</span>:&#123;<br>        <span class="hljs-string">&quot;bool&quot;</span>:&#123;<br>           <span class="hljs-string">&quot;filter&quot;</span>:&#123;<br>               <span class="hljs-string">&quot;range&quot;</span>:&#123;<br>                   <span class="hljs-string">&quot;age&quot;</span>:&#123;<br>                       <span class="hljs-string">&quot;gt&quot;</span>:<span class="hljs-number">11</span><br>                   &#125;<br>               &#125;<br>           &#125;<br>        &#125;<br>    &#125;,<br>    <span class="hljs-string">&quot;from&quot;</span>:<span class="hljs-number">0</span>,<span class="hljs-regexp">//</span>从某页开始<br>    <span class="hljs-string">&quot;size&quot;</span>:<span class="hljs-number">5</span><span class="hljs-regexp">//</span>每页查询多少条<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#post</span><br><span class="line">http://localhost:9200/test/_search</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#传递的参数</span><br><span class="line">&#123;</span><br><span class="line">    &quot;query&quot;:&#123;</span><br><span class="line">        &quot;bool&quot;:&#123;</span><br><span class="line">           &quot;filter&quot;:&#123;</span><br><span class="line">               &quot;range&quot;:&#123;</span><br><span class="line">                   &quot;age&quot;:&#123;</span><br><span class="line">                       &quot;gt&quot;:11</span><br><span class="line">                   &#125;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;from&quot;:0,//从某页开始</span><br><span class="line">    &quot;size&quot;:5//每页查询多少条</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>（16）文档查询结果高亮显示</li>
 </ul>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-comment">#post</span><br>http:<span class="hljs-regexp">//</span>localhost:<span class="hljs-number">9200</span><span class="hljs-regexp">/test/</span>_search<br><br><span class="hljs-comment">#传递的参数</span><br>&#123;<br>    <span class="hljs-string">&quot;query&quot;</span>:&#123;<br>       <span class="hljs-string">&quot;match_phrase&quot;</span>:&#123;<br>           <span class="hljs-string">&quot;name&quot;</span>:<span class="hljs-string">&quot;局部&quot;</span><br>       &#125;<br>    &#125;,<br>    <span class="hljs-string">&quot;highlight&quot;</span>:&#123;<br>        <span class="hljs-string">&quot;fields&quot;</span>:&#123;<br>            <span class="hljs-string">&quot;name&quot;</span>:&#123;&#125;<br>        &#125;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#post</span><br><span class="line">http://localhost:9200/test/_search</span><br><span class="line"></span><br><span class="line">#传递的参数</span><br><span class="line">&#123;</span><br><span class="line">    &quot;query&quot;:&#123;</span><br><span class="line">       &quot;match_phrase&quot;:&#123;</span><br><span class="line">           &quot;name&quot;:&quot;局部&quot;</span><br><span class="line">       &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;highlight&quot;:&#123;</span><br><span class="line">        &quot;fields&quot;:&#123;</span><br><span class="line">            &quot;name&quot;:&#123;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
 
 
                 
-              </div>
-            
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/elasticsearch/" class="category-chain-item">elasticsearch</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/elasticsearch/">#elasticsearch</a>
-      
-    </div>
-  
-</div>
-
-
-              
-  
-
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>elasticsearch</div>
-      <div>http://example.com/2022/08/14/elasticsearch/</div>
-    </div>
-    <div class="license-meta">
-      
-        <div class="license-meta-item">
-          <div>作者</div>
-          <div>codehezi</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>发布于</div>
-          <div>2022年8月14日</div>
-        </div>
-      
-      
-      <div class="license-meta-item">
-        <div>许可协议</div>
-        <div>
-          
-            
-            
-              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-              <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                <i class="iconfont icon-by"></i>
-              </span>
-              </a>
-            
-          
-        </div>
-      </div>
-    </div>
-    <div class="license-icon iconfont"></div>
-  </div>
-
-
-
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2022/08/21/liunx_system/" title="腾讯云轻量服务器部署fireshare">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">腾讯云轻量服务器部署fireshare</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2022/08/07/python/" title="python">
-                        <span class="hidden-mobile">python</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
             </div>
+            <hr/>
 
             
-          </article>
-        </div>
-      </div>
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">codehezi</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://example.com/2022/08/14/elasticsearch/">http://example.com/2022/08/14/elasticsearch/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">codehezi</a>
+                    !
+                </span>
+            </div>
+        
     </div>
 
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
 
-
-
-  </aside>
-
-
-    </div>
-  </div>
-</div>
-
-
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-    
-
-    
-      <div class="col-lg-7 mx-auto nopadding-x-md">
-        <div class="container custom mx-auto">
-          <link rel="stylesheet" href="/dist/APlayer.min.css"> <div id="aplayer"></div> <script type="text/javascript" src="/dist/APlayer.min.js"></script> <script type="text/javascript" src="/js/diy/music.js"></script>
-        </div>
-      </div>
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-  
-  
-</div>
-
-  </footer>
-
-  <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
       }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
+    </script>
 
 
 
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/elasticsearch/">
+                                    <span class="chip bg-color">elasticsearch</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
 
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2022/08/21/liunx-system/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="腾讯云轻量服务器部署fireshare">
+                        
+                        <span class="card-title">腾讯云轻量服务器部署fireshare</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-08-21
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/liunx/" class="post-category">
+                                    liunx
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/liunx/">
+                        <span class="chip bg-color">liunx</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/08/07/python/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="python">
+                        
+                        <span class="card-title">python</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-08-07
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/python/" class="post-category">
+                                    python
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/python/">
+                        <span class="chip bg-color">python</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
 
 
 
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
 
-  
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
 <script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
 
-    window.tocbot.init({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      collapseDepth   : CONFIG.toc.collapseDepth || 0,
-      scrollSmooth    : true,
-      headingsOffset  : -boardTop
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
     });
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
-    }
-  });
 </script>
 
+    
 
-  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
-
-  <script>Fluid.plugins.codeWidget();</script>
+</main>
 
 
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2022</span>
+            
+            <a href="/about" target="_blank">codehezi</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+                <span id="sitetime"> Loading ...</span>
+                <script>
+                    var calcSiteTime = function () {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = "2019";
+                        var startMonth = "6";
+                        var startDate = "28";
+                        var startHour = "0";
+                        var startMinute = "0";
+                        var startSecond = "0";
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+
+                        // 区分是否有年份.
+                        var language = 'zh-CN';
+                        if (startYear === String(todayYear)) {
+                            document.getElementById("year").innerHTML = todayYear;
+                            var daysTip = 'This site has been running for ' + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                daysTip = '本站已运行 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                daysTip = '本站已運行 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = daysTip;
+                        } else {
+                            document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                            var yearsAndDaysTip = 'This site has been running for ' + diffYears + ' years and '
+                                + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                yearsAndDaysTip = '本站已运行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                yearsAndDaysTip = '本站已運行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = yearsAndDaysTip;
+                        }
+                    }
+
+                    calcSiteTime();
+                </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link ">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
     };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
-  });
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
 </script>
 
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
 
-  
 <script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
 </script>
 
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-
-  
-<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/dianjichuzi.js"></script>
-<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/jingtaisidai.js"></script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
 
 
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
 
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+    
 
+    
 
-  
+    <!-- 雪花特效 -->
+    
 
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
 </body>
+
 </html>
