@@ -4,12 +4,16 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="搭建属于自己的私有云盘, 个人博客">
-    <meta name="description" content="打造属于自己的私有云盘（zpan）
-ZPan 致力于打造一款不限速的网盘系统，因此采用客户端直连云存储的方式进行设计。目前 ZPan 支持所有兼容 S3 协议的云存储平台，您可以选用您熟悉的平台来驱动 ZPan。
+    <meta name="keywords" content="redis的简单使用, 个人博客">
+    <meta name="description" content="redis 的基本操作
+首先安装 redis
 
-zpan 的特点
-完全不">
+
+使用 docker 安装 redis
+
+1.在/usr/local 的文件下建一个 redis 的文件夹，以便于后面对 redis 的管理
+
+12345# 执行命令cd /usr/local">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +25,7 @@ zpan 的特点
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>搭建属于自己的私有云盘 | 个人博客</title>
+    <title>redis的简单使用 | 个人博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -207,12 +211,12 @@ zpan 的特点
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">搭建属于自己的私有云盘</h1>
+                    <h1 class="description center-align post-title">redis的简单使用</h1>
                 </div>
             </div>
         </div>
@@ -236,8 +240,8 @@ zpan 的特点
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/zpan/">
-                                <span class="chip bg-color">zpan</span>
+                            <a href="/tags/redis/">
+                                <span class="chip bg-color">redis</span>
                             </a>
                         
                     </div>
@@ -248,8 +252,8 @@ zpan 的特点
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/zpan/" class="post-category">
-                                zpan
+                            <a href="/categories/redis/" class="post-category">
+                                redis
                             </a>
                         
                     </div>
@@ -261,7 +265,7 @@ zpan 的特点
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-09-03
+                    2022-09-20
                 </div>
                 
 
@@ -282,66 +286,121 @@ zpan 的特点
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="打造属于自己的私有云盘（zpan）"><a href="#打造属于自己的私有云盘（zpan）" class="headerlink" title="打造属于自己的私有云盘（zpan）"></a>打造属于自己的私有云盘（zpan）</h1><blockquote>
-<p>ZPan 致力于打造一款不限速的网盘系统，因此采用客户端直连云存储的方式进行设计。目前 ZPan 支持所有兼容 S3 协议的云存储平台，您可以选用您熟悉的平台来驱动 ZPan。</p>
+                <h3 id="redis-的基本操作"><a href="#redis-的基本操作" class="headerlink" title="redis 的基本操作"></a>redis 的基本操作</h3><blockquote>
+<p>首先安装 redis</p>
 </blockquote>
-<h2 id="zpan-的特点"><a href="#zpan-的特点" class="headerlink" title="zpan 的特点"></a>zpan 的特点</h2><ul>
-<li><p>完全不受服务器带宽限制</p>
-</li>
-<li><p>支持所有兼容 S3 协议的云存储</p>
-</li>
-<li><p>支持文件及文件夹管理</p>
-</li>
-<li><p>支持文件及文件夹分享（未登录可访问）</p>
-</li>
-<li><p>支持文档预览及音视频播放</p>
-</li>
-<li><p>支持多用户存储空间控制</p>
-</li>
-<li><p>支持多语言</p>
-</li>
+<ul>
+<li><p><strong>使用 docker 安装 redis</strong></p>
+<ul>
+<li>1.在/usr/local 的文件下建一个 redis 的文件夹，以便于后面对 redis 的管理</li>
 </ul>
-<h2 id="zpan-云存储搭建"><a href="#zpan-云存储搭建" class="headerlink" title="zpan 云存储搭建"></a>zpan 云存储搭建</h2><ul>
-<li>准备一台云服务器（这里我用腾讯云为例）</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">#创建工作目录</span><br><span class="line"></span><br><span class="line">mkdir zpan</span><br><span class="line"></span><br><span class="line">mkdir minio</span><br><span class="line"></span><br><span class="line">#添加docker-compose配置文件</span><br><span class="line"></span><br><span class="line">version: &#x27;3.7&#x27;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  minio:</span><br><span class="line">    image: minio/minio:latest</span><br><span class="line">    command: server /data --console-address=&quot;:9001&quot;</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;9000:9000&quot;</span><br><span class="line">      - &quot;9001:9001&quot;</span><br><span class="line">    volumes:</span><br><span class="line">      - minio:/data</span><br><span class="line">    environment:</span><br><span class="line">      - MINIO_ROOT_USER=XXXX</span><br><span class="line">      - MINIO_ROOT_PASSWORD=XXXXX</span><br><span class="line">      - MINIO_DOMAIN=minio.localhost</span><br><span class="line"></span><br><span class="line">  zpan:</span><br><span class="line">    image: saltbo/zpan:latest</span><br><span class="line">    volumes:</span><br><span class="line">      - zpcfg:/etc/zpan</span><br><span class="line">      - zpdata:/srv # only for sqlite</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;8222:8222&quot;</span><br><span class="line">    depends_on:</span><br><span class="line">      - minio</span><br><span class="line"></span><br><span class="line">volumes:</span><br><span class="line">  minio:</span><br><span class="line">  zpcfg:</span><br><span class="line">  zpdata:</span><br><span class="line"></span><br><span class="line">#执行命令拉取镜像并启动</span><br><span class="line"></span><br><span class="line">docker-compose up -d</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 执行命令</span><br><span class="line">cd /usr/local</span><br><span class="line"></span><br><span class="line"># 创建文件夹</span><br><span class="line">mkdie redis</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>之后可以登录访问：http:localhost:8222</li>
+<li>2.进入创建的文件夹</li>
 </ul>
-<p><img src="https://cdn.staticaly.com/gh/codehezi/images@master/images/image.zmetdlw5whs.webp" alt="image"></p>
-<ul>
-<li>配置数据库</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 这里配置mysql数据库</span><br><span class="line"></span><br><span class="line">user:pass@tcp(127.0.0.1:3306)/zpan?charset=utf8mb4&amp;parseTime=True&amp;loc=Local //这里的user和pass代表你创建数据库的用户名和密码</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 进入文件夹</span><br><span class="line">cd redis/</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>安装好后，创建存储</li>
+<li>3.编写 docker-compose 配置文件</li>
 </ul>
-<p><img src="https://cdn.staticaly.com/gh/codehezi/images@master/images/image.1zkthvw0kfpc.webp" alt="image"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">version: &#x27;3.3&#x27;</span><br><span class="line">services:</span><br><span class="line">  redis:</span><br><span class="line">    image: redis</span><br><span class="line">    restart: always</span><br><span class="line">    hostname: redis</span><br><span class="line">    container_name: redis</span><br><span class="line">    privileged: true</span><br><span class="line">    ports:</span><br><span class="line">      - 6379:6379</span><br><span class="line">    environment:</span><br><span class="line">      TZ: Asia/Shanghai</span><br><span class="line">    volumes:</span><br><span class="line">      - ./data:/data</span><br><span class="line">      - ./conf/redis.conf:/etc/redis/redis.conf</span><br><span class="line">      - ./logs:/logs</span><br><span class="line">    command:</span><br><span class="line">      --requirepass &quot;xxxxxxx&quot; #这一行是设置密码</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li>需要使用腾讯云创建存储桶</li>
+<li>拉取镜像并启动</li>
 </ul>
-<p><img src="https://cdn.staticaly.com/gh/codehezi/images@master/images/image.3zjpap49ecg0.webp" alt="image"></p>
-<ul>
-<li>进入访问管理页面创建密钥</li>
-</ul>
-<p><img src="https://cdn.staticaly.com/gh/codehezi/images@master/images/image.6t1i6fq87l40.webp" alt="image"></p>
-<ul>
-<li>配置 zpan 的存储</li>
-</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 执行操作</span><br><span class="line">docker-compose up -d</span><br><span class="line"></span><br><span class="line"># 查看镜像是否启动</span><br><span class="line">docker ps</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.staticaly.com/gh/codehezi/images@master/images/image.3zncg9gh0340.webp" alt="image"></p>
 <blockquote>
-<p>注意:这里的接入点配置，是访问域名的从 cos 到最后面那段，如下图：</p>
+<p>出现这个说明 redis 的镜像就启动起来了</p>
 </blockquote>
-<p><img src="https://cdn.staticaly.com/gh/codehezi/images@master/images/image.68jppkxo1800.webp" alt="image"></p>
-<ul>
-<li>再将秘钥的 id 和 key 配置进去</li>
+</li>
+<li><p><strong>redis 的简单操作</strong></p>
+<p>1.进入 redis 的客户端</p>
+</li>
 </ul>
-<p><img src="https://cdn.staticaly.com/gh/codehezi/images@master/images/image.3buew2pte6g0.webp" alt="image"></p>
-<h2 id="配置完成后直接访问-http-localhost-8222-地址，得到如下图效果"><a href="#配置完成后直接访问-http-localhost-8222-地址，得到如下图效果" class="headerlink" title="配置完成后直接访问 http:localhost:8222 地址，得到如下图效果"></a>配置完成后直接访问 http:localhost:8222 地址，得到如下图效果</h2><p><img src="https://cdn.staticaly.com/gh/codehezi/images@master/images/image.5nc0zgtk1kg0.webp" alt="image"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it 容器的id redis-cli</span><br></pre></td></tr></table></figure>
+
+<p>2.简单的设置一个值测试一下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set test 123</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.staticaly.com/gh/codehezi/images@master/images/image.660jbcci0d40.webp" alt="image"></p>
 <blockquote>
-<p>出现这个结果说明 zpan 云盘已经搭建成功，如果在云服务器上搭建的，申请一个域名然后备案下域名，云盘就可以随时访问了</p>
+<p>出现上图显示的结果，说明需要密码认证</p>
 </blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 执行这行命令即可认证通过。xxxx就是之前配置文件设置的密码</span><br><span class="line">auth xxxx</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.staticaly.com/gh/codehezi/images@master/images/image.7j49dzrmwjc0.webp" alt="image"></p>
+<blockquote>
+<p>出现这个结果，说明认证通过</p>
+</blockquote>
+<p>3.redis 的一些命令操作（redis 都是基于键值对的操作）</p>
+<ul>
+<li>（1）增加一条数据</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set test 123</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>（2）查看添加的数据</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">get test</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>（3）删除添加的数据</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">del test</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>（4）查看所有的 key</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keys *</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>（5）查看以某个字符开头的所有 key</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keys j*</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>（6）查看以某个字符结尾的所有 key</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keys *j</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>（7）选择要使用的 db</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select 2 # 意思就是选择第二库使用，redis默认使用第0个库，总共会生成16个库</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>（8）清空所有的库数据</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flushall</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>（9）清空对应库的数据</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flushdb</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>（10）添加 list 集合数据</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 这里如果含有中文的话可能会出现乱码，这个时候进入redis的客户端的时候要加上一个指令</span><br><span class="line"># 先退出客户端</span><br><span class="line">exit</span><br><span class="line"></span><br><span class="line"># 重新进入客户端</span><br><span class="line">docker exec -it 容器的id redis-cli --raw</span><br><span class="line"></span><br><span class="line">lpush list &#x27;1&#x27; &#x27;2&#x27; &#x27;test&#x27; &#x27;测试中文&#x27;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>（11）查看 key 的类型</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type key</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>（12）判断 key 是否存在</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exists key</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>（13）设置 key 的失效时间</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">expire key 2 # 2是设置的时间为2s</span><br></pre></td></tr></table></figure>
+
 
                 
             </div>
@@ -368,7 +427,7 @@ zpan 的特点
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/09/03/zpan/">http://example.com/2022/09/03/zpan/</a>
+                    <a href="http://example.com/2022/09/20/redis-operate/">http://example.com/2022/09/20/redis-operate/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -406,8 +465,8 @@ zpan 的特点
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/zpan/">
-                                    <span class="chip bg-color">zpan</span>
+                                <a href="/tags/redis/">
+                                    <span class="chip bg-color">redis</span>
                                 </a>
                             
                         </div>
@@ -450,9 +509,10 @@ zpan 的特点
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2022/09/20/redis-operate/">
                     <div class="card-image">
@@ -470,9 +530,9 @@ zpan 的特点
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-09-20
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-09-20
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -485,6 +545,7 @@ zpan 的特点
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -503,13 +564,13 @@ zpan 的特点
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/08/30/hexo-sszh/">
+                <a href="/2022/09/03/zpan/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="hexo更换闪烁之狐的主题">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="搭建属于自己的私有云盘">
                         
-                        <span class="card-title">hexo更换闪烁之狐的主题</span>
+                        <span class="card-title">搭建属于自己的私有云盘</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -520,14 +581,14 @@ zpan 的特点
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-08-30
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-09-03
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/hexo/" class="post-category">
-                                    hexo
+                            <a href="/categories/zpan/" class="post-category">
+                                    zpan
                                 </a>
                             
                             
@@ -537,8 +598,8 @@ zpan 的特点
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/hexo/">
-                        <span class="chip bg-color">hexo</span>
+                    <a href="/tags/zpan/">
+                        <span class="chip bg-color">zpan</span>
                     </a>
                     
                 </div>
