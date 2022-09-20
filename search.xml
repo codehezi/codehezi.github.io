@@ -229,6 +229,25 @@
     
     
     <entry>
+      <title>windows安装hexo静态博客</title>
+      <link href="/2022/07/22/hexo/"/>
+      <url>/2022/07/22/hexo/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="windows搭建静态博客"><a href="#windows搭建静态博客" class="headerlink" title="windows搭建静态博客"></a>windows搭建静态博客</h3><blockquote><p>安装环境</p><ul><li>(1)安装了node的环境，并且版本在14.0.1或者以上</li><li>(2)安装了Git环境</li><li>(3)搭建hexo静态博客</li><li>(4)注册了GitHub账号，便于后面代码托管</li></ul></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#安装hexo的命令行</span><br><span class="line">npm install -g hexo-cli</span><br><span class="line"></span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">##检查hexo是否安装完成</span><br><span class="line">hexo -v</span><br></pre></td></tr></table></figure><p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.50g2wdtujgo0.webp"></p><blockquote><p>出现这样的输出说明hexo安装完成了</p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#在任意一磁盘下加一个文件夹，如：blogtest，在此文件夹下初始化</span><br><span class="line">hexo init</span><br></pre></td></tr></table></figure><p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.7jgrkbc5xcs0.webp"></p><blockquote><p>出现此图说明已经初始化完成</p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#下载hexo需要的一些依赖</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure><p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.7i5b0lwmsog0.webp"></p><blockquote><p>出现这个文件夹说明依赖已经下载完</p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#先清理一下</span><br><span class="line">hexo clean</span><br><span class="line"> </span><br><span class="line">#生成静态文件</span><br><span class="line">hexo g</span><br><span class="line"></span><br><span class="line">#启动hexo服务</span><br><span class="line">hexo s</span><br><span class="line"></span><br><span class="line">#发布到GitHub</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure><p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.45b9j5qn4n80.webp"></p><blockquote><p>出现这个图说明hexo的静态博客已经搭建成功</p></blockquote>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> windows </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>springboot项目改造成dubbo微服务项目</title>
       <link href="/2022/07/22/dubbo/"/>
       <url>/2022/07/22/dubbo/</url>
@@ -246,25 +265,6 @@
         <tags>
             
             <tag> java </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>windows安装hexo静态博客</title>
-      <link href="/2022/07/22/hexo/"/>
-      <url>/2022/07/22/hexo/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="windows搭建静态博客"><a href="#windows搭建静态博客" class="headerlink" title="windows搭建静态博客"></a>windows搭建静态博客</h3><blockquote><p>安装环境</p><ul><li>(1)安装了node的环境，并且版本在14.0.1或者以上</li><li>(2)安装了Git环境</li><li>(3)搭建hexo静态博客</li><li>(4)注册了GitHub账号，便于后面代码托管</li></ul></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#安装hexo的命令行</span><br><span class="line">npm install -g hexo-cli</span><br><span class="line"></span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">##检查hexo是否安装完成</span><br><span class="line">hexo -v</span><br></pre></td></tr></table></figure><p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.50g2wdtujgo0.webp"></p><blockquote><p>出现这样的输出说明hexo安装完成了</p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#在任意一磁盘下加一个文件夹，如：blogtest，在此文件夹下初始化</span><br><span class="line">hexo init</span><br></pre></td></tr></table></figure><p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.7jgrkbc5xcs0.webp"></p><blockquote><p>出现此图说明已经初始化完成</p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#下载hexo需要的一些依赖</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure><p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.7i5b0lwmsog0.webp"></p><blockquote><p>出现这个文件夹说明依赖已经下载完</p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#先清理一下</span><br><span class="line">hexo clean</span><br><span class="line"> </span><br><span class="line">#生成静态文件</span><br><span class="line">hexo g</span><br><span class="line"></span><br><span class="line">#启动hexo服务</span><br><span class="line">hexo s</span><br><span class="line"></span><br><span class="line">#发布到GitHub</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure><p><img src="https://cdn.staticaly.com/gh/codehezi/rest@master/images/image.45b9j5qn4n80.webp"></p><blockquote><p>出现这个图说明hexo的静态博客已经搭建成功</p></blockquote>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> windows </tag>
             
         </tags>
       
