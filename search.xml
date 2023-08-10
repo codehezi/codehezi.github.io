@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>picGo图床工具</title>
+      <link href="/2023/08/10/picgo-gitee/"/>
+      <url>/2023/08/10/picgo-gitee/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="picGo图床工具"><a href="#picGo图床工具" class="headerlink" title="picGo图床工具"></a>picGo图床工具</h3><ul><li><p>1.下载picGo工具</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/Molunerfinn/PicGo/releases/tag/v2.4.0-beta.3</span><br></pre></td></tr></table></figure></li><li><p>2.安装picGo工具加简单设置</p><p><img src="https://gitee.com/wangyhcode/images/raw/master/img/202308101614279.png"></p><blockquote><blockquote><p>打开图中的开关</p></blockquote></blockquote></li><li><p>3.下载上传插件与gitee绑定</p><p><img src="https://gitee.com/wangyhcode/images/raw/master/img/202308101617872.png"></p></li><li><p>4.创建gitee的仓库，存储上传的图片</p></li><li><p>5.配置pic与gitee仓库的绑定</p><p><img src="https://gitee.com/wangyhcode/images/raw/master/img/202308101622967.png"></p><p> 如何生成令牌？</p></li></ul><p><img src="https://gitee.com/wangyhcode/images/raw/master/img/202308101626523.png"></p><p><img src="https://gitee.com/wangyhcode/images/raw/master/img/202308101628578.png">   </p><p><img src="https://gitee.com/wangyhcode/images/raw/master/img/202308101629393.png"></p><p><img src="https://gitee.com/wangyhcode/images/raw/master/img/202308101633195.png"></p><p><img src="https://gitee.com/wangyhcode/images/raw/master/img/202308101635459.png"></p><p>复制此处生成的令牌放入token即可</p><blockquote><p>注意：仓库要设置成公共的，不然上传的文件无法在相册或者markdown中显示出来</p></blockquote><ul><li><p>6.最后的效果</p><p><img src="C:\Users\Administrator.DESKTOP-1UAPK9B\AppData\Roaming\Typora\typora-user-images\image-20230810164013293.png" alt="image-20230810164013293"></p></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> picGo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> picGo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>mybatis实现源码简约解析</title>
       <link href="/2023/01/15/mybatis/"/>
       <url>/2023/01/15/mybatis/</url>
